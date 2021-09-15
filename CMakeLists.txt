@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.1)
 project(xfce-py-plugin)
 
 include(GNUInstallDirs)
-set(PLUGIN_ID "py_plugin")
+
+set(PLUGIN_ID "py_plugin") # Please update this
+
 set(XFCE_PLUGIN_PATH "${CMAKE_INSTALL_LIBDIR}/xfce4/panel/plugins")
 set(PYTHON_PLUGIN_PATH_SUFFIX "${XFCE_PLUGIN_PATH}/python")
 set(PYTHON_SEARCH_PATH "${CMAKE_INSTALL_PREFIX}/${PYTHON_PLUGIN_PATH_SUFFIX}")
