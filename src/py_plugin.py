@@ -18,8 +18,25 @@ class PanelPlugin(Gtk.Box):
         This method is called by sample_py_new() method
         """
         super().__init__()
-        self.entry = Gtk.Entry()
-        self.add(self.entry)
+        self.button = Gtk.Button.new_with_label("Click Me")
+        self.button.connect("clicked", self.on_button_clicked)
+        self.add(self.button)
+
+
+    def on_button_clicked(self, button: Gtk.Button):
+        """
+        Sample on_button_clicked method
+        """
+        dialog = Gtk.MessageDialog(
+            flags=0,
+            message_type=Gtk.MessageType.INFO,
+            buttons=Gtk.ButtonsType.OK,
+            text="You clicked"
+        )
+
+        dialog.run()
+
+        dialog.destroy()
 
     def free(self):
         """
@@ -41,3 +58,19 @@ class PanelPlugin(Gtk.Box):
                                1 = Gtk.Orientation.VERTICAL
         """
         print("Got Orientation:",orientation)
+
+    def about(self):
+        """
+        Xfce4 panel emit "about" signal whenever user request the information
+        about the plugin from right-click-menu
+        """
+        dialog = Gtk.MessageDialog(
+            flags=0,
+            message_type=Gtk.MessageType.INFO,
+            buttons=Gtk.ButtonsType.OK,
+            text="This is about dialog"
+        )
+
+        dialog.run()
+
+        dialog.destroy()

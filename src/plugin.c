@@ -118,6 +118,14 @@ sample_py_free(XfcePanelPlugin *plugin,
 }
 
 static void
+sample_py_about(XfcePanelPlugin *plugin,
+                SamplePyPlugin *sample_py)
+{
+    // calling 'about' method from python object,
+    PyObject_CallMethod(sample_py->py_object, "about", "");
+}
+
+static void
 sample_py_construct(XfcePanelPlugin *plugin)
 {
     SamplePyPlugin *sample_py;
@@ -134,10 +142,17 @@ sample_py_construct(XfcePanelPlugin *plugin)
         printf("Entry is not a python gobject\n");
         return;
     }
-
     gtk_widget_show_all(GTK_WIDGET(widget));
 
+    // Adding python widget in plugin
     gtk_container_add(GTK_CONTAINER(plugin), GTK_WIDGET(widget));
+
+    xfce_panel_plugin_add_action_widget(plugin, GTK_WIDGET(widget));
+
+    // show the about menue item and connect signal
+    xfce_panel_plugin_menu_show_about(plugin);
+    g_signal_connect(G_OBJECT(plugin), "about",
+                     G_CALLBACK(sample_py_about), sample_py);
 
     g_signal_connect(G_OBJECT(plugin), "free-data",
                      G_CALLBACK(sample_py_free), sample_py);
