@@ -4,6 +4,12 @@ import gi
 gi.require_version('Gtk','3.0')
 from gi.repository import Gtk
 
+PLUGIN_NAME        = 'Sample-Python-Plugin'
+PLUGIN_VERSION     = '0.1.0'
+PLUGIN_DESCRIPTION = 'Sample Plugin for Xfce4 Panel in python'
+PLUGIN_AUTHOR      = 'Manjeet Singh <itsmanjeet1998@gmail.com>'
+PLUGIN_ICON        = 'download'
+
 class PanelPlugin(Gtk.Box):
     """
     Xfce4 PanelPlugin,
@@ -18,8 +24,8 @@ class PanelPlugin(Gtk.Box):
         This method is called by sample_py_new() method
         """
         super().__init__()
-        self.button = Gtk.Button.new_with_label("Click Me")
-        self.button.connect("clicked", self.on_button_clicked)
+        self.button = Gtk.Button.new_with_label('Click Me')
+        self.button.connect('clicked', self.on_button_clicked)
         self.add(self.button)
 
 
@@ -64,13 +70,14 @@ class PanelPlugin(Gtk.Box):
         Xfce4 panel emit "about" signal whenever user request the information
         about the plugin from right-click-menu
         """
-        dialog = Gtk.MessageDialog(
-            flags=0,
-            message_type=Gtk.MessageType.INFO,
-            buttons=Gtk.ButtonsType.OK,
-            text="This is about dialog"
-        )
+        dialog = Gtk.AboutDialog()
+        dialog.set_title("About Dialog")
+        dialog.set_program_name(PLUGIN_NAME)
+        dialog.set_version(PLUGIN_VERSION)
+        dialog.set_comments(PLUGIN_DESCRIPTION)
+        dialog.set_website("https://your.plugin/website")
+        dialog.set_authors([PLUGIN_AUTHOR])
+        dialog.set_logo_icon_name(PLUGIN_ICON)
 
-        dialog.run()
-
-        dialog.destroy()
+        dialog.connect('response', lambda dialog, data: dialog.destroy())
+        dialog.show_all()
