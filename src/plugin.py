@@ -8,7 +8,7 @@ PLUGIN_NAME        = 'Sample-Python-Plugin'
 PLUGIN_VERSION     = '0.1.0'
 PLUGIN_DESCRIPTION = 'Sample Plugin for Xfce4 Panel in python'
 PLUGIN_AUTHOR      = 'Manjeet Singh <itsmanjeet1998@gmail.com>'
-PLUGIN_ICON        = 'download'
+PLUGIN_ICON        = 'sample-plugin'
 
 class PanelPlugin(Gtk.Box):
     """
@@ -24,25 +24,13 @@ class PanelPlugin(Gtk.Box):
         This method is called by sample_py_new() method
         """
         super().__init__()
-        self.button = Gtk.Button.new_with_label('Click Me')
-        self.button.connect('clicked', self.on_button_clicked)
-        self.add(self.button)
+        self.hello_lbl = Gtk.Label("Hello")
+        self.world_lbl = Gtk.Label("World")
+        self.Box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
+        self.add(self.Box)
+        self.Box.pack_start(self.hello_lbl, True, True, 1)
+        self.Box.pack_end(self.world_lbl, True, True, 1)
 
-
-    def on_button_clicked(self, button: Gtk.Button):
-        """
-        Sample on_button_clicked method
-        """
-        dialog = Gtk.MessageDialog(
-            flags=0,
-            message_type=Gtk.MessageType.INFO,
-            buttons=Gtk.ButtonsType.OK,
-            text="You clicked"
-        )
-
-        dialog.run()
-
-        dialog.destroy()
 
     def free(self):
         """
@@ -63,7 +51,7 @@ class PanelPlugin(Gtk.Box):
                                0 = Gtk.Orientation.HORIZONTAL
                                1 = Gtk.Orientation.VERTICAL
         """
-        print("Got Orientation:",orientation)
+        self.Box.set_orientation(orientation)
 
     def about(self):
         """
