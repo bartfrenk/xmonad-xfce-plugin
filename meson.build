@@ -7,7 +7,7 @@ dependencies = [
 	meson.get_compiler('c').find_library('dl', required: true),
 	dependency('python3-embed')]
 
-plugin_path = get_option('prefix') + '/' + get_option('libdir') + '/xfce4/panel/plugins'
+plugin_path = get_option('prefix') + '/' + get_option('libdir') + '/xfce4/panel-plugins'
 py_plugin_path = plugin_path + '/python'
 plugin_id = 'sample-plugin'
 
