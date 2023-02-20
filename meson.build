@@ -11,9 +11,17 @@ plugin_path = get_option('prefix') + '/' + get_option('libdir') + '/xfce4/panel-
 py_plugin_path = plugin_path + '/python'
 plugin_id = 'sample-plugin'
 
+python_exe = find_program('python3', 'python', required: true)
+
+ret = run_command(python_exe, '-c', 'from distutils import sysconfig; print(sysconfig.get_config_var("LDLIBRARY"))', check: true)
+libpython_name = ret.stdout().strip()
+message('Found libpython:', libpython_name)
+
 config = configuration_data()
 config.set('PLUGIN_ID', plugin_id)
 config.set('PYTHON_SEARCH_PATH', py_plugin_path)
+config.set('LIBPYTHON_NAME', libpython_name)
+
 configure_file(input: 'config.h.in',
 	output: 'config.h',
 	configuration: config)

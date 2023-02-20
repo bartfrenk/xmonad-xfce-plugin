@@ -19,12 +19,18 @@ sample_py_new(XfcePanelPlugin *plugin)
     PyObject *py_widget_module;      // Holds the imported widget module
     PyObject *py_widget_class;       // Our plugin class
 
-    // allocating space for out plugin
+    // allocating space for our plugin
     sample_py = g_slice_new0(SamplePyPlugin);
     sample_py->plugin = plugin;
 
-    // Need, otherwise giving error undefined PyExc_NotImplemented
-    sample_py->library_handler = dlopen("libpython3.9.so", RTLD_LAZY | RTLD_GLOBAL);
+    // Needed, otherwise importing gi on the Python side crashes due to missing Python symbols.
+    // E.g, PyUnicode_FromFormat. This happens, because xfce4-panel is not linked against Python.
+    // So even if this .so is linked against it, symbols do not propagate through the callchain from
+    // panel -> plugin.so -> plugin.py -> gi -> _gi.cpython-310-x86_64-linux-gnu.so
+    // Usually, C-extensions in python aren't linked against python (for reasons).
+    // dlopen here with RTLD_GLOBAL fixes that.
+    // https://gitlab.xfce.org/itsManjeet/sample-python-plugin/-/merge_requests/2
+    sample_py->library_handler = dlopen(LIBPYTHON_NAME, RTLD_LAZY | RTLD_GLOBAL);
     if (sample_py->library_handler == NULL)
     {
         fprintf(stderr, "Error: %s\n", dlerror());
