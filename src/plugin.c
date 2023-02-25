@@ -29,7 +29,7 @@ sample_py_new(XfcePanelPlugin *plugin)
     // panel -> plugin.so -> plugin.py -> gi -> _gi.cpython-310-x86_64-linux-gnu.so
     // Usually, C-extensions in python aren't linked against python (for reasons).
     // dlopen here with RTLD_GLOBAL fixes that.
-    // https://gitlab.xfce.org/itsManjeet/sample-python-plugin/-/merge_requests/2
+    // https://gitlab.xfce.org/itsManjeet/xfce4-python-sample-plugin/-/merge_requests/2
     sample_py->library_handler = dlopen(LIBPYTHON_NAME, RTLD_LAZY | RTLD_GLOBAL);
     if (sample_py->library_handler == NULL)
     {
