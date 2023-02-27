@@ -4,11 +4,11 @@ import gi
 gi.require_version('Gtk','3.0')
 from gi.repository import Gtk
 
-PLUGIN_NAME        = 'Sample-Python-Plugin'
+PLUGIN_NAME        = 'xfce4-python-sample-plugin'
 PLUGIN_VERSION     = '0.1.0'
 PLUGIN_DESCRIPTION = 'Sample Plugin for Xfce4 Panel in python'
 PLUGIN_AUTHOR      = 'Manjeet Singh <itsmanjeet1998@gmail.com>'
-PLUGIN_ICON        = 'sample-plugin'
+PLUGIN_ICON        = 'python-sample-plugin'
 
 class PanelPlugin(Gtk.Box):
     """

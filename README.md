@@ -1,4 +1,4 @@
-# Sample Python Plugin
+# xfce4-python-sample-plugin
 A Sample/Template project to demonstrate the implementation of Xfce4 Panel plugin in Python.
 
 # Requirements

@@ -9,7 +9,7 @@ dependencies = [
 
 plugin_path = get_option('prefix') + '/' + get_option('libdir') + '/xfce4/panel-plugins'
 py_plugin_path = plugin_path + '/python'
-plugin_id = 'sample-plugin'
+plugin_id = 'python-sample-plugin'
 
 python_exe = find_program('python3', 'python', required: true)
 
@@ -33,5 +33,5 @@ library(plugin_id, 'src/plugin.c', dependencies: dependencies,
 install_data('src/plugin.py', install_dir: py_plugin_path,
 	rename: plugin_id + '.py')
 
-install_data('sample-plugin.svg', install_dir: get_option('prefix') + '/' + get_option('datadir') + '/icons/hicolor/scalable/apps/')
+install_data('python-sample-plugin.svg', install_dir: get_option('prefix') + '/' + get_option('datadir') + '/icons/hicolor/scalable/apps/')
 install_data('plugin.desktop', install_dir: get_option('prefix') + '/' + get_option('datadir') + '/xfce4/panel/plugins/', rename: plugin_id + '.desktop')
