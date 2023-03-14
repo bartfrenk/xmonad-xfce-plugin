@@ -13,7 +13,7 @@ plugin_id = 'python-sample-plugin'
 
 python_exe = find_program('python3', 'python', required: true)
 
-ret = run_command(python_exe, '-c', 'from distutils import sysconfig; print(sysconfig.get_config_var("LDLIBRARY"))', check: true)
+ret = run_command(python_exe, '-c', 'import sysconfig; print(sysconfig.get_config_var("LDLIBRARY"))', check: true)
 libpython_name = ret.stdout().strip()
 message('Found libpython:', libpython_name)
 
