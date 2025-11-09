@@ -10,3 +10,6 @@ build:
 
 install:
 	sudo meson install -C $(BUILDDIR)
+
+run:
+	python scripts/run.py

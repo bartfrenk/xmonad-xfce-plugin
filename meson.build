@@ -33,5 +33,13 @@ library(plugin_id, 'src/plugin.c', dependencies: dependencies,
 install_data('src/plugin.py', install_dir: py_plugin_path,
 	rename: plugin_id + '.py')
 
-install_data('python-sample-plugin.svg', install_dir: get_option('prefix') + '/' + get_option('datadir') + '/icons/hicolor/scalable/apps/')
-install_data('plugin.desktop', install_dir: get_option('prefix') + '/' + get_option('datadir') + '/xfce4/panel/plugins/', rename: plugin_id + '.desktop')
+install_data(
+  'resources/python-sample-plugin.svg',
+  install_dir: get_option('prefix') + '/' + get_option('datadir') + '/icons/hicolor/scalable/apps/'
+)
+
+install_data(
+  'plugin.desktop',
+  install_dir: get_option('prefix') + '/' + get_option('datadir') + '/xfce4/panel/plugins/',
+  rename: plugin_id + '.desktop'
+)

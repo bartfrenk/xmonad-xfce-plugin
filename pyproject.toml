@@ -1,0 +1,21 @@
+[project]
+name = "xmonad-xfce-plugin"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pycairo>=1.28.0",
+    "pygobject>=3.54.5",
+    "pygobject-stubs>=2.14.0",
+]
+
+[tool.black]
+line-length = 99
+
+[tool.isort]
+profile = "black"
+line-length = 99
+
+[tool.pyright]
+useLibraryCodeForTypes=true
