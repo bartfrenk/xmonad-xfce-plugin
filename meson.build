@@ -9,7 +9,7 @@ dependencies = [
 
 plugin_path = get_option('prefix') + '/' + get_option('libdir') + '/xfce4/panel-plugins'
 py_plugin_path = plugin_path + '/python'
-plugin_id = 'python-sample-plugin'
+plugin_id = 'xmonad-xfce-plugin'
 
 python_exe = find_program('python3', 'python', required: true)
 
